@@ -17,6 +17,20 @@ class EditMemberController extends Controller
             return response()->json(['error' => 'Membro não encontrado'], 404);
         }
 
+        $request->validate([
+
+            'name' => ['required', 'string', 'max:60'],
+            'role' => ['required', 'string', 'max:30']
+
+        ], [
+            'name.required' => 'O campo nome é obrigatório.',
+            'name.string' => 'O campo nome deve ser uma string.',
+            'name.max' => 'O campo nome não pode ter mais de :max caracteres.',
+            'role.required' => 'O campo cargo é obrigatório',
+            'role.string' => 'O campo cargo deve ser uma string.',
+            'role.max' => 'O campo cargo não pode ter mais de :max caracteres.'
+        ]);
+
         $member->name = $request->input('name');
         $member->role = $request->input('role');
         $member->save();
