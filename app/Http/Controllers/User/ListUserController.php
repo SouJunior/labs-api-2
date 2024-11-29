@@ -14,8 +14,9 @@ class ListUserController extends Controller
             'uuid',
             'name',
             'linkedin',
-            'phone',  // Adicionado recentemente
-            'address', // Adicionado recentemente
+            'discord',
+            'city',
+            'state',
             'created_at',
             'updated_at'
         )->get();
