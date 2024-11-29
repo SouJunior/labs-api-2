@@ -28,8 +28,9 @@ class CreateUserController extends Controller
             'email' => ['required', 'email', 'unique:users'],
             'linkedin' => ['required'],
             'password' => ['required', 'min:8'],
-            'register_token' => ['required', 'string']
-
+            'register_token' => ['required', 'string'],
+            'phone' => ['nullable', 'string', 'max:15'],  // Adicionado recentemente
+            'address' => ['nullable', 'string', 'max:255'] // Adicionado recentemente
         ], [
             'name.required' => 'O campo nome é obrigatório.',
             'name.string' => 'O campo nome deve ser uma string.',
@@ -40,7 +41,11 @@ class CreateUserController extends Controller
             'password.required' => 'O campo senha é obrigatório.',
             'password.min' => 'O campo senha deve ter pelo menos :min caracteres.',
             'register_token.required' => 'O campo register_token é obrigatório.',
-            'linkedin.required' => 'O campo Linkedin é obrigatório.'
+            'linkedin.required' => 'O campo Linkedin é obrigatório.',
+            'phone.string' => 'O campo telefone deve ser uma string.', // Adicionado recentemente
+            'phone.max' => 'O campo telefone não pode ter mais de :max caracteres.', // Adicionado recentemente
+            'address.string' => 'O campo endereço deve ser uma string.', // Adicionado recentemente
+            'address.max' => 'O campo endereço não pode ter mais de :max caracteres.', // Adicionado recentemente
         ]);
 
         $user = User::query()->create([
@@ -51,6 +56,8 @@ class CreateUserController extends Controller
             'linkedin' => $request->input('linkedin'),
             'permission' => 'founder',
             'password' => bcrypt($request->input('password')),
+            'phone' => $request->input('phone'),  // Adicionando telefone
+            'address' => $request->input('address'), // Adicionado recentemente
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ]);
