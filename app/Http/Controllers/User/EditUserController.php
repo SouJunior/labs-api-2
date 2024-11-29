@@ -51,7 +51,9 @@ class EditUserController extends Controller
         $state = $request->input('state');
         $password = $request->input('password');
 
-        $user->name = $name;
+        if ($name) {
+            $user->name = $name;
+        }
 
         if ($email) {
             $user->email = $email;
