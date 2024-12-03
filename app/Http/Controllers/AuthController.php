@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 
 class AuthController extends Controller
 {
-
     public function login(Request $request)
     {
         $request->validate([
@@ -23,7 +22,6 @@ class AuthController extends Controller
 
 
         if (!auth()->attempt($request->only('email', 'password'))) {
-
             return response()->json([
                 'message' => 'Credenciais inválidas.',
             ], 401);
@@ -33,6 +31,5 @@ class AuthController extends Controller
         $token = $user->createToken('auth_token')->plainTextToken;
 
         return response()->json(['token' => $token, 'user' => auth()->user()], 200);
-
     }
 }
