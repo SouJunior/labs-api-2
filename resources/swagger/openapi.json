@@ -1,54 +1,531 @@
 {
-    "openapi": "3.0.0",
-    "info": {
-        "title": "Health&Med API",
-        "version": "1.0.0",
-        "description": "API documentation for Health&Med"
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Generated from Insomnia",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/": {
+      "get": {
+        "summary": "Status",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
     },
-    "components": {
-        "securitySchemes": {
-            "bearerAuth": {
-                "type": "http",
-                "scheme": "bearer",
-                "bearerFormat": "JWT"
+    "/api/login": {
+      "post": {
+        "summary": "Login 2",
+        "description": "",
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "schema": {
+              "type": "string"
             }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "email": "w2@w.com",
+                  "password": "12345678"
+                }
+              }
+            }
+          },
+          "required": true
         }
+      }
     },
-    "security": [
-        {
-            "bearerAuth": []
+    "/api/users": {
+      "get": {
+        "summary": "Index",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
         }
-    ],
-    "paths": {
-        "/api/login": {
-            "post": {
-                "summary": "Login",
-                "tags": [
-                    "Auth"
-                ],
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "type": "object",
-                                "properties": {
-                                    "email": {
-                                        "type": "string"
-                                    },
-                                    "password": {
-                                        "type": "string"
-                                    }
-                                }
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "Success"
-                    }
+      }
+    },
+    "/api/user/989f62c8-1caf-4fc8-ba40-df9481f5e878": {
+      "put": {
+        "summary": "Update",
+        "description": "",
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "name": "dev1",
+                  "email": "w@w.com",
+                  "password": "12345678",
+                  "linkedin": "https://linkedin.com"
+                }
+              }
+            }
+          },
+          "required": true
+        }
+      }
+    },
+    "/api/user/{uuid_user}": {
+      "delete": {
+        "summary": "User",
+        "description": "",
+        "parameters": [
+            {
+                "name": "uuid_user",
+                "in": "path",
+                "required": true,
+                "schema": {
+                "type": "string"
                 }
             }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
         }
+      }
+    },
+    "/api/user": {
+      "post": {
+        "summary": "Create",
+        "description": "",
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "name": "dev2",
+                  "email": "w2@w.com",
+                  "password": "12345678",
+                  "linkedin": "asdfasdf",
+                  "register_token": "{{register_token}}"
+                }
+              }
+            }
+          },
+          "required": true
+        }
+      }
+    },
+    "/api/products/": {
+      "get": {
+        "summary": "Index - All",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/products/97590704-6dda-42ad-9dd0-d7f7099c8aa9": {
+      "get": {
+        "summary": "Index ByUserUuid",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/product/5ef4d14d-95e3-4843-9cc1-42c4e0389088": {
+      "get": {
+        "summary": "Show",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/product": {
+      "post": {
+        "summary": "Create - diff",
+        "description": "",
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "name": "Fix",
+                  "description": "cross 1",
+                  "owner_uuid": "teste"
+                }
+              }
+            }
+          },
+          "required": true
+        }
+      }
+    },
+    "/api/product/98bfdd8c-8fe2-4658-8e82-358b43d38b6c": {
+      "put": {
+        "summary": "Update",
+        "description": "",
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "name": "Fix the world 1",
+                  "description": "cross t"
+                }
+              }
+            }
+          },
+          "required": true
+        }
+      },
+      "delete": {
+        "summary": "Delete",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/squads/": {
+      "get": {
+        "summary": "Index",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/squads/88b3730b-7bcc-4ece-af04-bc3d75f27625": {
+      "get": {
+        "summary": "Index byProduct",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/squad/1f8a88a4-e31f-4611-acb1-b03cb2067e40": {
+      "get": {
+        "summary": "Show",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/squad": {
+      "post": {
+        "summary": "Create",
+        "description": "",
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "name": "Jose1",
+                  "description": "UX / UI",
+                  "product_uuid": "{{ _.uuid_product }}"
+                }
+              }
+            }
+          },
+          "required": true
+        }
+      }
+    },
+    "/api/squad/1f8a88a4-e31f-4611-acb1-b03cb2067e40": {
+      "put": {
+        "summary": "Update",
+        "description": "",
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "name": "Jose UPDATE",
+                  "description": "UX / UI",
+                  "product_uuid": "{{ _.uuid_product }}"
+                }
+              }
+            }
+          },
+          "required": true
+        }
+      }
+    },
+    "/api/squad/": {
+      "delete": {
+        "summary": "Delete",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/squad/{uuid_squad}/members": {
+      "get": {
+        "summary": "Index",
+        "description": "",
+        "parameters": [
+            {
+                "name": "uuid_squad",
+                "in": "path",
+                "required": true,
+                "schema": {
+                "type": "string"
+                }
+            }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/squad/{uuid_squad}/member/1": {
+      "get": {
+        "summary": "Show",
+        "description": "",
+        "parameters": [
+            {
+                "name": "uuid_squad",
+                "in": "path",
+                "required": true,
+                "schema": {
+                "type": "string"
+                }
+            }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/squad/{uuid_squad}/member": {
+      "post": {
+        "summary": "Create",
+        "description": "",
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+            {
+                "name": "uuid_squad",
+                "in": "path",
+                "required": true,
+                "schema": {
+                "type": "string"
+                }
+            }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "name": "Jap\u00e3o",
+                  "role": "Dev",
+                  "squad_uuid": "{{ _.uuid_squad }}"
+                }
+              }
+            }
+          },
+          "required": true
+        }
+      }
+    },
+    "/api/squad/{uuid_squad}/member/18b1524a-1b2b-4f5f-bfca-a504263640f7": {
+      "put": {
+        "summary": "Update",
+        "description": "",
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+            {
+                "name": "uuid_squad",
+                "in": "path",
+                "required": true,
+                "schema": {
+                "type": "string"
+                }
+            }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "name": "Jo\u00e3o UPDATE",
+                  "role": "UX / UI"
+                }
+              }
+            }
+          },
+          "required": true
+        }
+      },
+      "delete": {
+        "summary": "Delete",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
     }
+  }
 }
