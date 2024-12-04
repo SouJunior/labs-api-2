@@ -306,6 +306,39 @@
             "description": "Successful response"
           }
         }
+      },
+      "put": {
+        "summary": "Update",
+        "description": "",
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "name": "Jose UPDATE",
+                  "description": "UX / UI",
+                  "product_uuid": "{{ _.uuid_product }}"
+                }
+              }
+            }
+          },
+          "required": true
+        }
       }
     },
     "/api/squad": {
@@ -333,41 +366,6 @@
                 "type": "object",
                 "example": {
                   "name": "Jose1",
-                  "description": "UX / UI",
-                  "product_uuid": "{{ _.uuid_product }}"
-                }
-              }
-            }
-          },
-          "required": true
-        }
-      }
-    },
-    "/api/squad/1f8a88a4-e31f-4611-acb1-b03cb2067e40": {
-      "put": {
-        "summary": "Update",
-        "description": "",
-        "parameters": [
-          {
-            "name": "Content-Type",
-            "in": "header",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful response"
-          }
-        },
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "example": {
-                  "name": "Jose UPDATE",
                   "description": "UX / UI",
                   "product_uuid": "{{ _.uuid_product }}"
                 }
