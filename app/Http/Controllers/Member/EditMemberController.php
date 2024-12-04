@@ -13,7 +13,6 @@ class EditMemberController extends Controller
         $member = Member::query()->where(['squad_uuid' => $uuid, 'uuid' => $memberUuid])->first();
 
         if (!$member) {
-
             return response()->json(['error' => 'Membro não encontrado'], 404);
         }
 

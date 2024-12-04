@@ -23,27 +23,57 @@ class EditUserController extends Controller
 
             'name' => ['required', 'string', 'max:60'],
             'email' => ['nullable', 'email'],
-            'password' => ['min:8']
-
+            'password' => ['min:8'],
+            'linkedin' => ['nullable', 'string', 'max:101'],
+            'discord' => ['nullable', 'string', 'max:33'],
+            'city' => ['nullable', 'string', 'max:60'],
+            'state' => ['nullable', 'string', 'max:20']
         ], [
             'name.string' => 'O campo nome deve ser uma string.',
             'name.max' => 'O campo nome não pode ter mais de :max caracteres.',
             'email.email' => 'O campo e-mail deve ser um endereço de e-mail válido.',
-            'password.min' => 'O campo senha deve ter pelo menos :min caracteres.'
+            'password.min' => 'O campo senha deve ter pelo menos :min caracteres.',
+            'linkedin.string' => 'O campo LinkedIn deve ser uma string.',
+            'linkedin.max' => 'O campo LinkedIn não pode ter mais de :max caracteres.',
+            'discord.string' => 'O campo Discord deve ser uma string.',
+            'discord.max' => 'O campo Discord não pode ter mais de :max caracteres.',
+            'city.string' => 'O campo cidade deve ser uma string.',
+            'city.max' => 'O campo cidade não pode ter mais de :max caracteres.',
+            'state.string' => 'O campo estado deve ser uma string.',
+            'state.max' => 'O campo estado não pode ter mais de :max caracteres.',
         ]);
 
         $email = $request->input('email');
         $name = $request->input('name');
         $linkedin = $request->input('linkedin');
+        $discord = $request->input('discord');
+        $city = $request->input('city');
+        $state = $request->input('state');
         $password = $request->input('password');
 
-        $user->name = $name;
+        if ($name) {
+            $user->name = $name;
+        }
 
         if ($email) {
             $user->email = $email;
         }
 
-        $user->linkedin = $linkedin;
+        if ($linkedin) {
+            $user->linkedin = $linkedin;
+        }
+
+        if ($discord) {
+            $user->discord = $discord;
+        }
+
+        if ($city) {
+            $user->city = $city;
+        }
+
+        if ($state) {
+            $user->state = $state;
+        }
 
         if ($password) {
             $user->password = bcrypt($password);
