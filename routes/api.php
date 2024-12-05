@@ -59,7 +59,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
         Route::put('/{uuid}', [EditUserController::class, '__invoke'])
             ->whereUuid('uuid')
-            ->name('apr.user.edit');
+            ->name('api.user.edit');
 
         Route::delete('/{uuid}', [DeleteUserController::class, '__invoke'])
             ->whereUuid('uuid')
@@ -116,6 +116,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
                 ->name('api.member.show');
 
             Route::post('/', [CreateMemberController::class, '__invoke'])
+                ->whereUuid('uuid')
                 ->name('api.member.create');
 
             Route::put('/{memberUuid}', [EditMemberController::class, '__invoke'])
