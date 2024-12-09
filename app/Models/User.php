@@ -24,7 +24,10 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'city',
+        'state',
         'linkedin',
+        'discord',
         'permission',
     ];
 
