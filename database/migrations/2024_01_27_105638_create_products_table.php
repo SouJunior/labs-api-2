@@ -10,23 +10,25 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('products', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->uuid('uuid')->unique();
-            $table->uuid('owner_uuid')->nullable();
-            $table->string('name');
-            $table->text('description');
-            $table->integer('active')->nullable()->default(1);
-            $table->datetimes();
+        if (app()->isLocal()) {
+            Schema::create('products', function (Blueprint $table) {
+                $table->bigIncrements('id');
+                $table->uuid('uuid')->unique();
+                $table->uuid('owner_uuid')->nullable();
+                $table->string('name');
+                $table->text('description');
+                $table->integer('active')->nullable()->default(1);
+                $table->datetimes();
 
-            $table->index('uuid');
-            $table->index('owner_uuid');
+                $table->index('uuid');
+                $table->index('owner_uuid');
 
-            $table->foreign('owner_uuid')
-                ->references('uuid')
-                ->on('users')
-                ->onDelete('set null');
-        });
+                $table->foreign('owner_uuid')
+                    ->references('uuid')
+                    ->on('users')
+                    ->onDelete('set null');
+            });
+        }
     }
 
     /**
