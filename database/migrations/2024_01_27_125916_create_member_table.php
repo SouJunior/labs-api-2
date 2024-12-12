@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -21,6 +20,7 @@ return new class extends Migration
                 $table->datetimes();
 
                 $table->uuid('squad_uuid');
+                $table->index('squad_uuid');
                 $table->foreign('squad_uuid')->references('uuid')->on('squads');
             });
         }
