@@ -140,3 +140,5 @@ Route::prefix('user')->group(function () {
     Route::post('/', [CreateUserController::class, '__invoke'])
         ->name('api.user.create');
 });
+
+Route::post('/logout', [AuthController::class, 'logout'])->name('api.logout')->middleware('auth:sanctum');
