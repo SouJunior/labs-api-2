@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\User;
 
+use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
 class EditUserController extends Controller
 {
@@ -23,7 +23,7 @@ class EditUserController extends Controller
 
             'name' => ['required', 'string', 'max:60'],
             'email' => ['nullable', 'email'],
-            'password' => ['min:8'],
+            'password' => ['nullable', 'min:8',],
             'linkedin' => ['nullable', 'string', 'max:101'],
             'discord' => ['nullable', 'string', 'max:33'],
             'city' => ['nullable', 'string', 'max:60'],

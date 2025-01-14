@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\User;
 
+use App\Http\Controllers\Controller;
 use App\Models\User;
-use Ramsey\Uuid\Uuid;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Env;
-use App\Http\Controllers\Controller;
+use Ramsey\Uuid\Uuid;
 
 class CreateUserController extends Controller
 {
@@ -46,7 +46,6 @@ class CreateUserController extends Controller
             'password.required' => 'O campo senha é obrigatório.',
             'password.min' => 'O campo senha deve ter pelo menos :min caracteres.',
             'register_token.required' => 'O campo register_token é obrigatório.',
-            'linkedin.required' => 'O campo Linkedin é obrigatório.',
         ]);
 
         $user = User::query()->create([
