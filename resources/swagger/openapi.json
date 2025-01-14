@@ -82,20 +82,6 @@
           "200": {
             "description": "Successful response"
           }
-        },
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "example": {
-                  "email": "w2@w.com",
-                  "password": "12345678"
-                }
-              }
-            }
-          },
-          "required": true
         }
       }
     },
