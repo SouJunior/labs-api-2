@@ -35,6 +35,6 @@ class DeleteSquadController extends Controller
 
         $squad->delete();
 
-        return response()->json(['message' => 'Squad apagada com sucesso'], 200);
+        return response()->json(['message' => 'Squad apagada com sucesso'], 204);
     }
 }

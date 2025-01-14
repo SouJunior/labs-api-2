@@ -32,6 +32,6 @@ class DeleteProductController extends Controller
 
         return response()->json([
             'Message' => 'Produto deletado com sucesso'
-        ], 200);
+        ], 204);
     }
 }

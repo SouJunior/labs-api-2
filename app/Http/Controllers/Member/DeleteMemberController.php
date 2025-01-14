@@ -19,6 +19,6 @@ class DeleteMemberController extends Controller
 
         $member->delete();
 
-        return response()->json(['message' => 'Membro apagado com sucesso'], 200);
+        return response()->json(['message' => 'Membro apagado com sucesso'], 204);
     }
 }

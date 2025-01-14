@@ -39,6 +39,6 @@ class DeleteUserController extends Controller
 
         return response()->json([
             'message' => 'Usuário deletado com sucesso!',
-        ], 200);
+        ], 204);
     }
 }
