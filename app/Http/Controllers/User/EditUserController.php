@@ -24,6 +24,7 @@ class EditUserController extends Controller
             'name' => ['required', 'string', 'max:60'],
             'email' => ['nullable', 'email'],
             'password' => ['min:8'],
+            'permission' => ['nullable', 'in:admin,founder'],
             'linkedin' => ['nullable', 'string', 'max:101'],
             'discord' => ['nullable', 'string', 'max:33'],
             'city' => ['nullable', 'string', 'max:60'],
@@ -33,6 +34,7 @@ class EditUserController extends Controller
             'name.max' => 'O campo nome não pode ter mais de :max caracteres.',
             'email.email' => 'O campo e-mail deve ser um endereço de e-mail válido.',
             'password.min' => 'O campo senha deve ter pelo menos :min caracteres.',
+            'permission.in' => 'O campo Permissão deve ser admin ou founder',
             'linkedin.string' => 'O campo LinkedIn deve ser uma string.',
             'linkedin.max' => 'O campo LinkedIn não pode ter mais de :max caracteres.',
             'discord.string' => 'O campo Discord deve ser uma string.',
@@ -49,7 +51,9 @@ class EditUserController extends Controller
         $discord = $request->input('discord');
         $city = $request->input('city');
         $state = $request->input('state');
+        $permission = $request->input('permission') ?? $user->permission;
         $password = $request->input('password');
+
 
         if ($name) {
             $user->name = $name;
