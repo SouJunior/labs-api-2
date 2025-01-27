@@ -26,7 +26,7 @@ class CreateUserController extends Controller
 
             'name' => ['required', 'string', 'max:60'],
             'email' => ['required', 'email', 'unique:users'],
-            'linkedin' => ['required', 'string', 'max:101'],
+            'linkedin' => ['nullable', 'string', 'max:101'],
             'discord' => ['nullable', 'string', 'max:33'],
             'city' => ['nullable', 'string', 'max:60'],
             'state' => ['nullable', 'string', 'max:20'],
@@ -40,7 +40,7 @@ class CreateUserController extends Controller
             'email.email' => 'O campo e-mail deve ser um endereço de e-mail válido.',
             'email.unique' => 'Já existe uma conta com este e-mail.',
             'linkedin.required' => 'O campo Perfil no LinkedIn é obrigatório.',
-            'linkedin' => ['required', 'string', 'max:101'],
+            'linkedin' => ['nullable', 'string', 'max:101'],
             'discord.string' => 'O campo Perfil no Discord deve ser uma string.',
             'discord' => ['nullable', 'string', 'max:33'],
             'city.string' => 'O campo Cidade deve ser uma string.',
