@@ -39,7 +39,6 @@ class CreateUserController extends Controller
             'email.required' => 'O campo e-mail é obrigatório.',
             'email.email' => 'O campo e-mail deve ser um endereço de e-mail válido.',
             'email.unique' => 'Já existe uma conta com este e-mail.',
-            'linkedin.required' => 'O campo Perfil no LinkedIn é obrigatório.',
             'linkedin.string' => 'O campo LinkedIn deve ser uma string.',
             'linkedin.max' => 'O campo LinkedIn não pode ter mais de :max caracteres.',
             'discord.string' => 'O campo Perfil no Discord deve ser uma string.',
