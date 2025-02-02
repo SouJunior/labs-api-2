@@ -26,7 +26,7 @@ class CreateUserController extends Controller
 
             'name' => ['required', 'string', 'max:60'],
             'email' => ['required', 'email', 'unique:users'],
-            'linkedin' => ['required'],
+            'linkedin' => ['nullable'],
             'password' => ['required', 'min:8'],
             'register_token' => ['required', 'string']
 
@@ -39,8 +39,7 @@ class CreateUserController extends Controller
             'email.unique' => 'Já existe uma conta com este e-mail.',
             'password.required' => 'O campo senha é obrigatório.',
             'password.min' => 'O campo senha deve ter pelo menos :min caracteres.',
-            'register_token.required' => 'O campo register_token é obrigatório.',
-            'linkedin.required' => 'O campo Linkedin é obrigatório.'
+            'register_token.required' => 'O campo register_token é obrigatório.'
         ]);
 
         $user = User::query()->create([
