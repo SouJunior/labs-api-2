@@ -13,6 +13,7 @@ class ListUserController extends Controller
         return User::select(
             'uuid',
             'name',
+            'permission',
             'linkedin',
             'discord',
             'city',
