@@ -4,6 +4,20 @@
     "title": "Generated from Insomnia",
     "version": "1.0.0"
   },
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  },
   "paths": {
     "/": {
       "get": {
@@ -48,6 +62,26 @@
             }
           },
           "required": true
+        }
+      }
+    },
+    "/api/logout": {
+      "post": {
+        "summary": "Logout",
+        "description": "",
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
         }
       }
     },
@@ -148,7 +182,7 @@
                   "email": "w2@w.com",
                   "password": "12345678",
                   "linkedin": "asdfasdf",
-                  "register_token": "{{register_token}}"
+                  "register_token": "register"
                 }
               }
             }
