@@ -26,7 +26,7 @@ class CreateUserController extends Controller
 
             'name' => ['required', 'string', 'max:60'],
             'email' => ['required', 'email', 'unique:users'],
-            'linkedin' => ['required', 'string', 'max:101'],
+            'linkedin' => ['nullable', 'string', 'max:101'],
             'discord' => ['nullable', 'string', 'max:33'],
             'city' => ['nullable', 'string', 'max:60'],
             'state' => ['nullable', 'string', 'max:20'],
@@ -40,16 +40,19 @@ class CreateUserController extends Controller
             'email.required' => 'O campo e-mail é obrigatório.',
             'email.email' => 'O campo e-mail deve ser um endereço de e-mail válido.',
             'email.unique' => 'Já existe uma conta com este e-mail.',
-            'linkedin.required' => 'O campo Perfil no LinkedIn é obrigatório.',
+            'linkedin.string' => 'O campo LinkedIn deve ser uma string.',
+            'linkedin.max' => 'O campo LinkedIn não pode ter mais de :max caracteres.',
             'discord.string' => 'O campo Perfil no Discord deve ser uma string.',
+            'discord.max' => 'O campo Discord não pode ter mais de :max caracteres.',
             'city.string' => 'O campo Cidade deve ser uma string.',
+            'city.max' => 'O campo cidade não pode ter mais de :max caracteres.',
             'state.string' => 'O campo Estado deve ser uma string.',
             'permission.required' => 'O campo Permissão é obrigatório',
             'permission.in' => 'O campo Permissão deve ser admin ou founder',
+            'state.max' => 'O campo estado não pode ter mais de :max caracteres.',
             'password.required' => 'O campo senha é obrigatório.',
             'password.min' => 'O campo senha deve ter pelo menos :min caracteres.',
             'register_token.required' => 'O campo register_token é obrigatório.',
-            'linkedin.required' => 'O campo Linkedin é obrigatório.',
         ]);
 
         $user = User::query()->create([
