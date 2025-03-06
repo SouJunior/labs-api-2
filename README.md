@@ -6,3 +6,10 @@
   - Copiar o arquivo `.env.example` para `.env` e configurar o banco de dados.
   - Rodar o comando `php artisan key:generate` para gerar a chave da aplicação.
   - O projeto estará disponível em `http://localhost:8080`.
+
+## DevOps
+
+> [!TIP]
+> Configurar Continuous Deployment, garantindo ambiente de produção sempre atualizado
+
+N/A
