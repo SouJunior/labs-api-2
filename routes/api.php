@@ -82,6 +82,12 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::delete('/{uuid}', [DeleteUserController::class, '__invoke'])
             ->whereUuid('uuid')
             ->name('api.user.del');
+
+        Route::put('/user/{uuid}/role', [EditUserController::class, 'updateRole'])
+            ->middleware('checkPermission:admin')
+            ->whereUuid('uuid')
+            ->name('api.user.update.role');
+
     });
 
     Route::prefix('product')->group(function () {

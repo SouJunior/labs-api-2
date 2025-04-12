@@ -55,4 +55,25 @@ class EditUserController extends Controller
             'message' => 'Usuário atualizado com sucesso.',
         ], 200);
     }
+
+    public function updateRole(Request $request, $uuid)
+    {
+        // Verifica se o usuário autenticado é administrador
+        if (!auth()->user()->hasPermission('admin')) {
+            return response()->json(['message' => 'Acesso negado. Apenas administradores podem alterar cargos.'], 403);
+        }
+
+        // Validação da requisição
+        $request->validate([
+            'role' => 'required|string|exists:roles,name'
+        ]);
+
+        // Busca o usuário pelo UUID
+        $user = User::where('uuid', $uuid)->firstOrFail();
+
+        // Atualiza a role do usuário
+        $user->role()->update(['name' => $request->role]);
+
+        return response()->json(['message' => 'Cargo atualizado com sucesso!', 'user' => $user]);
+    }
 }
