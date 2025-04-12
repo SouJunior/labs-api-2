@@ -16,6 +16,7 @@ return new class extends Migration {
                 $table->uuid('uuid')->unique();
                 $table->string('name', 60);
                 $table->string('email', 60)->unique();
+                $table->string('email_verified_at', 60)->unique();
                 $table->string('password');
                 $table->string('permission')->nullable();
                 $table->integer('active')->nullable()->default(1);

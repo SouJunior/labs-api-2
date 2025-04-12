@@ -25,6 +25,8 @@ use App\Http\Controllers\Product\ShowProductController;
 use App\Http\Controllers\Product\ActiveProductController;
 use App\Http\Controllers\Product\CreateProductController;
 use App\Http\Controllers\Product\DeleteProductController;
+use App\Http\Controllers\Admin\AdminDashboardController;
+use App\Http\Controllers\Report\ReportController;
 
 Route::match(['get', 'post', 'head', 'options'], '/', [IndexController::class, 'index']);
 
@@ -51,8 +53,24 @@ Route::middleware(['auth:sanctum'])->group(function () {
         return $request->user();
     });
 
-    Route::prefix('user')->group(function () {
+    Route::get('/admin', function () {
+        return response()->json(['message' => 'Bem-vindo à área administrativa!']);
+    })->middleware('role:admin');
 
+
+    Route::prefix('admin')->group(function () {
+        Route::get('/dashboard', [AdminDashboardController::class, 'index'])
+            ->middleware('checkPermission:admin')
+            ->name('api.admin.dashboard');
+    });
+
+    Route::prefix('report')->group(function () {
+        Route::get('/', [ReportController::class, 'index'])
+            ->middleware('checkPermission:view_reports')
+            ->name('api.report.list');
+    });
+
+    Route::prefix('user')->group(function () {
         Route::post('/permission/{uuid}', [PermissionUserController::class, '__invoke'])
             ->whereUuid('uuid')
             ->name('api.user.permission');
@@ -64,14 +82,9 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::delete('/{uuid}', [DeleteUserController::class, '__invoke'])
             ->whereUuid('uuid')
             ->name('api.user.del');
-
-        // Route::patch('/alterPermissions/{uuid}', [UserController::class, 'alterUserPermission']);
-        // Route::patch('/type/{id}', [UserController::class, 'updateUserType']);
-
     });
 
     Route::prefix('product')->group(function () {
-
         Route::get('/{uuid}', [ShowProductController::class, '__invoke'])
             ->whereUuid('uuid')
             ->name('api.product.show');
@@ -93,8 +106,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     });
 
     Route::prefix('squad')->group(function () {
-
-        Route::get('/{uuid}', action: [ShowSquadController::class, '__invoke'])
+        Route::get('/{uuid}', [ShowSquadController::class, '__invoke'])
             ->whereUuid('uuid')
             ->name('api.squad.show');
 
@@ -110,7 +122,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
             ->name('api.squad.del');
 
         Route::prefix('{uuid}/member')->group(function () {
-
             Route::get('/{memberUuid}', [ShowMemberController::class, '__invoke'])
                 ->whereUuid('memberUuid')
                 ->name('api.member.show');
