@@ -1,0 +1,5 @@
+Criar middleware CheckPermission
+
+
+
+criado um endpoint no UserController para que apenas administradores possam atualizar o cargo (role) de um usuário.

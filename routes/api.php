@@ -27,6 +27,7 @@ use App\Http\Controllers\Product\CreateProductController;
 use App\Http\Controllers\Product\DeleteProductController;
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Report\ReportController;
+use App\Http\Controllers\RoleController;
 
 Route::match(['get', 'post', 'head', 'options'], '/', [IndexController::class, 'index']);
 
@@ -55,8 +56,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
     Route::get('/admin', function () {
         return response()->json(['message' => 'Bem-vindo à área administrativa!']);
-    })->middleware('role:admin');
-
+    })->middleware('check.role:admin');
 
     Route::prefix('admin')->group(function () {
         Route::get('/dashboard', [AdminDashboardController::class, 'index'])
@@ -77,17 +77,16 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
         Route::put('/{uuid}', [EditUserController::class, '__invoke'])
             ->whereUuid('uuid')
-            ->name('apr.user.edit');
+            ->name('api.user.edit');
 
         Route::delete('/{uuid}', [DeleteUserController::class, '__invoke'])
             ->whereUuid('uuid')
             ->name('api.user.del');
 
-        Route::put('/user/{uuid}/role', [EditUserController::class, 'updateRole'])
+        Route::put('/{uuid}/role', [EditUserController::class, 'updateRole'])
             ->middleware('checkPermission:admin')
             ->whereUuid('uuid')
             ->name('api.user.update.role');
-
     });
 
     Route::prefix('product')->group(function () {
@@ -143,6 +142,11 @@ Route::middleware(['auth:sanctum'])->group(function () {
                 ->whereUuid('memberUuid')
                 ->name('api.member.del');
         });
+    });
+
+    Route::prefix('role')->group(function () {
+        Route::put('/{role}/permissions', [RoleController::class, 'syncPermissions'])
+            ->name('api.role.sync.permissions');
     });
 });
 
